@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { PropType } from 'vue'
 
 export interface TimeTableData {
     label: string;
@@ -17,7 +17,8 @@ export interface TimeTableData {
     end: number;
 }
 
-export default defineComponent({
+import Vue from 'vue'
+export default Vue.extend({
     props: {
         height: { type: Number, default: 500 },
         width: { type: Number, default: 500 },
@@ -27,8 +28,8 @@ export default defineComponent({
         }
     },
     watch: {
-        height(o, n) { this.draw(); },
-        width(o, n) { this.draw(); },
+        height() { this.draw(); },
+        width() { this.draw(); },
         timeTableData() { this.draw(); }, 
     },
     methods: {
@@ -96,9 +97,11 @@ export default defineComponent({
 
                 return {
                     x: Math.cos(radian) * (radius + offset) + pivot,
-                    y: Math.sin(radian) * (radius + offset) + pivot                };
+                    y: Math.sin(radian) * (radius + offset) + pivot
+                };
             }
         },
     }
 })
+
 </script>
