@@ -28,7 +28,7 @@ export default defineComponent({
     },
     watch: {
         height(o, n) { this.draw(); },
-        width(o, n) { this.draw; },
+        width(o, n) { this.draw(); },
         timeTableData() { this.draw(); }, 
     },
     methods: {
