@@ -23,10 +23,10 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Data } from './type';
-import GarageCard from '~/components/GarageCard';
+import GarageCard from '~/components/GarageCard/GarageCard.vue';
 import { cardsInitial, todoListInitial } from '~/pages/data';
 import Layout from '~/components/LayoutTemplate/default.vue';
+import { Data } from '~/pages/type';
 
 export default Vue.extend({
   name: 'LandingPage',
