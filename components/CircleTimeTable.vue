@@ -8,7 +8,9 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue'
+// eslint-disable-next-line import/named
+import Vue, { PropType } from 'vue'
+import Color from 'color';
 
 export interface TimeTableData {
     label: string;
@@ -17,7 +19,6 @@ export interface TimeTableData {
     end: number;
 }
 
-import Vue from 'vue'
 export default Vue.extend({
     props: {
         height: { type: Number, default: 500 },
@@ -71,9 +72,10 @@ export default Vue.extend({
                 }
                 
                 { // draw pie lable
+                    ctx.fillStyle = Color(pie.color).isDark() ? 'white' : 'black';
                     const mid = (pie.end - pie.start) / 2 + pie.start;
                     const { x, y } = time2XY(mid, -radius / 4);
-                    ctx.strokeText(pie.label, x, y);
+                    ctx.fillText(pie.label, x, y);
                 }
 
             });
