@@ -1,8 +1,9 @@
 <template>
     <canvas 
         ref="canvas"
-        :height="height"
-        :width="width"
+        :width="width * dpr"
+        :height="height * dpr"
+        :style="{ height: `${height}px`, width: `${width}px` }"
         >
     </canvas>
 </template>
@@ -28,15 +29,25 @@ export default Vue.extend({
             default() { return []; }
         }
     },
+    data() {
+        return { dpr: 0 };
+    },
     watch: {
         height() { this.draw(); },
         width() { this.draw(); },
-        timeTableData() { this.draw(); }, 
+        timeTableData() { this.draw(); },
+        dpr() { this.draw(); }
+    },
+    mounted() {
+        this.dpr = window.devicePixelRatio;
+        this.$nextTick(() => {
+            this.draw();
+        });
     },
     methods: {
         draw() {
             // set size
-            const offset = 30;
+            const offset = 34;
             const radius = (
                     this.height < this.width ? 
                         this.height : this.width
@@ -48,37 +59,36 @@ export default Vue.extend({
             const ctx = canvas.getContext('2d')!;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.font = '12pt bold';
+            ctx.font = 'bold 10pt Noto Sans KR, sans-serif';
+            ctx.scale(this.dpr, this.dpr);
 
             // draw background
             ctx.beginPath();
             ctx.arc(pivot, pivot, radius, 0, Math.PI * 2);
             ctx.stroke();
-
             // draw time table data
             this.timeTableData.forEach(pie => {
-                { // draw pie
-                    ctx.fillStyle = pie.color;
-                    ctx.beginPath();
-                    ctx.moveTo(pivot, pivot);
-                    const { x, y } = time2XY(pie.start);
-                    ctx.lineTo(x, y);
-                    ctx.arc(
-                        pivot, pivot, radius,
-                        time2radian(pie.start),
-                        time2radian(pie.end)
-                    );
-                    ctx.closePath();
-                    ctx.fill();
-                }
-                
-                { // draw pie lable
-                    ctx.fillStyle = Color(pie.color).isDark() ? 'white' : 'black';
-                    const mid = (pie.end - pie.start) / 2 + pie.start;
-                    const { x, y } = time2XY(mid, -radius / 4);
-                    ctx.fillText(pie.label, x, y);
-                }
+                // draw pie
+                ctx.fillStyle = pie.color;
+                ctx.beginPath();
+                ctx.moveTo(pivot, pivot);
+                const { x, y } = time2XY(pie.start);
+                ctx.lineTo(x, y);
+                ctx.arc(
+                    pivot, pivot, radius,
+                    time2radian(pie.start),
+                    time2radian(pie.end)
+                );
+                ctx.closePath();
+                ctx.fill();
+            });
 
+            this.timeTableData.forEach(pie => {
+                // draw pie lable
+                ctx.fillStyle = Color(pie.color).isDark() ? 'white' : 'black';
+                const mid = (pie.end - pie.start) / 2 + pie.start;
+                const { x, y } = time2XY(mid, -radius / 4);
+                ctx.fillText(pie.label, x, y);
             });
             
             // draw time label
