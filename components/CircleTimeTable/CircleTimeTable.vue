@@ -74,7 +74,7 @@ export default Vue.extend({
           ctx.fillStyle = pie.color;
           ctx.beginPath();
           ctx.moveTo(pivot, pivot);
-          const {x, y} = this.time2XY(pie.start);
+          const { x, y } = this.time2XY(pie.start);
           ctx.lineTo(x, y);
           ctx.arc(
             pivot, pivot, radius,

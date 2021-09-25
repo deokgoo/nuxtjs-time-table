@@ -4,3 +4,5 @@ export interface TimeTableData {
   start: number;
   end: number;
 }
+
+export default {};

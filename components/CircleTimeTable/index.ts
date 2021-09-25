@@ -1,3 +1,3 @@
-import CircleTimeTable from '~/components/CircleTimeTable/CircleTimeTable.vue';
+import CircleTimeTable from './CircleTimeTable.vue';
 
 export default CircleTimeTable;

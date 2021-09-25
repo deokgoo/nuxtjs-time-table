@@ -6,11 +6,29 @@
         <div class="container">
           <div class="time-table__viewer">
             <div class="time-table__viewer__title">
-              생활 계획표
+              <h1>생활 계획표</h1>
+              <circle-time-table></circle-time-table>
             </div>
           </div>
           <div class="time-table__box">
-            something
+            <v-container class="grey lighten-5">
+              <v-row no-gutters>
+                <v-col
+                    v-for="n in 3"
+                    :key="n"
+                    cols="12"
+                    sm="4"
+                >
+                  <v-card
+                      class="pa-2"
+                      outlined
+                      tile
+                  >
+                    One of three columns
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </div>
         </div>
       </template>
@@ -20,11 +38,14 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Layout from '~/components/LayoutTemplate/default';
+import Layout from '~/components/LayoutTemplate/default.vue';
+import CircleTimeTable from '~/components/CircleTimeTable';
 
 export default Vue.extend({
+  name: 'TimeTable',
   components: {
-    Layout
+    Layout,
+    CircleTimeTable,
   },
 });
 </script>
@@ -36,18 +57,21 @@ export default Vue.extend({
   width: 100%;
   display: flex;
   font-family: 'Noto Sans KR', sans-serif;
+
   .time-table__viewer {
     flex: 60% 1 1;
     display: flex;
     justify-content: center;
+
     .time-table__viewer__title {
       font-size: 1rem;
     }
   }
+
   .time-table__box {
     flex: 40% 1 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
   }
 }
 

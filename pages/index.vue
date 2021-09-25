@@ -26,7 +26,7 @@ import Vue from 'vue';
 import { Data } from './type';
 import GarageCard from '~/components/GarageCard';
 import { cardsInitial, todoListInitial } from '~/pages/data';
-import Layout from '~/components/LayoutTemplate/default';
+import Layout from '~/components/LayoutTemplate/default.vue';
 
 export default Vue.extend({
   name: 'LandingPage',
