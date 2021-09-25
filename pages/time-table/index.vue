@@ -10,8 +10,8 @@
             </div>
             <circle-time-table
                 class="m-4"
-                :height="450"
-                :width="450"
+                :height="500"
+                :width="500"
                 :time-table-data="timeTableData"
             />
           </div>

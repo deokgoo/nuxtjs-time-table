@@ -26,7 +26,7 @@ export const timeTableInitialData: TimeTableData[] = [
     end: 13.0
   },
   {
-    label: '점심 🍽',
+    label: '점심 🍽️',
     color: 'orange',
     start: 13.0,
     end: 14.0
