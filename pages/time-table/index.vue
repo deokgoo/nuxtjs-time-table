@@ -47,7 +47,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Layout from '~/components/LayoutTemplate/default.vue';
-import CircleTimeTable from '~/components/CircleTimeTable';
+import CircleTimeTable from '~/components/CircleTimeTable/CircleTimeTable.vue';
 import { timeTableInitialData } from '~/components/CircleTimeTable/data';
 
 export default Vue.extend({

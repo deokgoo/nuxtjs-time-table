@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Color from 'color';
-import { TimeTableData } from './type';
+import { TimeTableData } from '~/components/CircleTimeTable/type';
 
 export default Vue.extend({
   props: {
