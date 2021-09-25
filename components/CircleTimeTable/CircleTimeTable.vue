@@ -102,7 +102,7 @@ export default Vue.extend({
       Array.from({ length: 24 }).forEach((_, h) => {
         const hour = h + 1;
         const { x, y } = this.time2XY(h + 1, offset / 2);
-        ctx.strokeText(`${hour}시`, x, y);
+        ctx.fillText(`${hour}시`, x, y);
       })
     },
   }
