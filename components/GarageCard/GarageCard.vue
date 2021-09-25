@@ -1,6 +1,6 @@
 <template>
-  <v-col class="garage-card" cols="12" sm="6" md="4" @click="movePageHandler">
-    <v-card width="450px">
+  <v-col cols="12" sm="6" md="4" @click="movePageHandler">
+    <v-card class="garage-card" width="450px">
       <v-img :src="card.imgUri" height="300px" width="450px"></v-img>
       <v-card-title class="garage-card__title" v-text="card.title"/>
     </v-card>
