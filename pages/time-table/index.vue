@@ -7,10 +7,18 @@
           <div class="time-table__viewer">
             <div class="time-table__viewer__title">
               <h1>생활 계획표</h1>
-              <circle-time-table></circle-time-table>
             </div>
+            <circle-time-table
+                class="m-4"
+                :height="450"
+                :width="450"
+                :time-table-data="timeTableData"
+            />
           </div>
           <div class="time-table__box">
+            <div class="time-table__viewer__title">
+              <h1>계획표 관리</h1>
+            </div>
             <v-container class="grey lighten-5">
               <v-row no-gutters>
                 <v-col
@@ -40,12 +48,18 @@
 import Vue from 'vue';
 import Layout from '~/components/LayoutTemplate/default.vue';
 import CircleTimeTable from '~/components/CircleTimeTable';
+import { timeTableInitialData } from '~/components/CircleTimeTable/data';
 
 export default Vue.extend({
   name: 'TimeTable',
   components: {
     Layout,
     CircleTimeTable,
+  },
+  data() {
+    return {
+      timeTableData: timeTableInitialData
+    }
   },
 });
 </script>
@@ -61,11 +75,13 @@ export default Vue.extend({
   .time-table__viewer {
     flex: 60% 1 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    .time-table__viewer__title > h1 {text-align: center;}
+  }
+  .time-table__viewer__title {
+    margin-bottom: 1rem;
+    font-size: 1rem;
 
-    .time-table__viewer__title {
-      font-size: 1rem;
-    }
   }
 
   .time-table__box {

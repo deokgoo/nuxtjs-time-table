@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Color from 'color';
 import { TimeTableData } from './type';
 
 export default Vue.extend({
@@ -71,10 +72,10 @@ export default Vue.extend({
       // draw time table data
       this.timeTableData.forEach(pie => {
         { // draw pie
+          const { x, y } = this.time2XY(pie.start);
           ctx.fillStyle = pie.color;
           ctx.beginPath();
           ctx.moveTo(pivot, pivot);
-          const { x, y } = this.time2XY(pie.start);
           ctx.lineTo(x, y);
           ctx.arc(
             pivot, pivot, radius,
@@ -89,7 +90,8 @@ export default Vue.extend({
         {
           const mid = (pie.end - pie.start) / 2 + pie.start;
           const { x, y } = this.time2XY(mid, -radius / 4);
-          ctx.strokeText(pie.label, x, y);
+          ctx.fillStyle = Color(pie.color).isDark() ? 'white' : 'black';
+          ctx.fillText(pie.label, x, y);
         }
       });
 
