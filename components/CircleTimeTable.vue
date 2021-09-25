@@ -48,6 +48,7 @@ export default Vue.extend({
             const ctx = canvas.getContext('2d')!;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
+            ctx.font = '12pt bold';
 
             // draw background
             ctx.beginPath();
@@ -81,9 +82,10 @@ export default Vue.extend({
             });
             
             // draw time label
+            ctx.fillStyle = 'black';
             for (let hour = 1; hour <= 24; hour++) {
                 const { x, y } = time2XY(hour, offset / 2);
-                ctx.strokeText(`${hour}시`, x, y);
+                ctx.fillText(`${hour}시`, x, y);
             } 
 
             // coordinate convert tool
